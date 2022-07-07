@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-
+  root "homes#top"
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  # #/homes
-  # root to: "homes#top"
+  #/homes
+
   # get "homes/about" => "homes#about", as: "about"
   # #/items
   # resources :items, only: [:index, :show]
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
