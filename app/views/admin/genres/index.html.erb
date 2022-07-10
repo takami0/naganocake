@@ -8,3 +8,8 @@
   <%= f.submit "新規登録" %>
 <%end%>
 
+<p>ジャンル</p>
+<%= @genres.each do |genre| %>
+  <% genre.name %>
+  <% "「編集」リンク"%>
+<%end%>
