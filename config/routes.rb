@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   # root "homes#top"
 
-  devise_for :customers, skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: "public/sessions"
-  }
-  #/homes
+  # devise_for :customers, skip: [:passwords], controllers: {
+  #   registrations: "public/registrations",
+  #   sessions: "public/sessions"
+  # }
+  # #/homes
 
   # get "homes/about" => "homes#about", as: "about"
   # #/items
@@ -30,13 +30,13 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  # namespace :admin do
-  #   #/homes
-  #   get "/" => "admin/homes#top" #管理者トップページ（注文履歴一覧）
+  namespace :admin do
+    #/homes
+    get "/" => "homes#top" #管理者トップページ（注文履歴一覧）
   #   #/items
   #   resources :items, only: [:index, :new, :create, :show, :edit, :update]
-  #   #/genres
-  #   resources :genres, only: [:index, :create, :edit, :update]
+    #/genres
+    resources :genres, only: [:index, :create, :edit, :update]
   #   #/customers
   #   resources :customers, only: [:index, :show, :edit, :update]
   #   #/orders
@@ -44,6 +44,6 @@ Rails.application.routes.draw do
   #   #/orders_histories
   #   patch "/admin/orders_histories/:id" => "admin/orders_histories#update"
 
-  # end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
