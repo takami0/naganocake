@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     #/homes
     get "/" => "homes#top" #管理者トップページ（注文履歴一覧）
   #   #/items
-  #   resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :items
     #/genres
     resources :genres, only: [:index, :create, :edit, :update]
   #   #/customers
