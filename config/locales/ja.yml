@@ -1,0 +1,8 @@
+  ja:
+    enums:
+      genre:
+        name:
+          cake: "ケーキ"
+          pudding: "プリン"
+          baked: "焼き菓子"
+          candy: "キャンディ"
