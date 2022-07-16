@@ -9,12 +9,14 @@
   <%= f.label "商品説明" %>
   <%= f.text_area :introduction %><br>
   <%= f.label "ジャンル"%>
-  <%= f.select :name, Genre.all.map { |genre| [genre.name, genre.id] } %>
+  <%= f.select :name, Genre.all.map { |genre| [genre.name, genre.id] }, {include_blank: true}, {} %><br>
   <%= f.label "税抜価格"%>
-  <%= f.text_field :price %><br>
+  <%= f.text_field :price %>
+  <%= f.label "円" %><br>
   <%= f.label "販売ステータス"%>
   <%= f.radio_button :is_active , true %>
   <%= f.label :is_active, "販売中", value: true %>
   <%= f.radio_button :is_active , false%>
-  <%= f.label :is_active, "販売停止中", value: false %>
+  <%= f.label :is_active, "販売停止中", value: false %><br>
+  <%= f.submit "新規作成" %>
 <%end%>
