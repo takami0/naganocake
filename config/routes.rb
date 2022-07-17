@@ -1,23 +1,21 @@
 Rails.application.routes.draw do
-  
+
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
   namespace :public do
-    get "/" => "homes#top"
+    get "/" => "homes#top" , as: "top"
     get "/about" => "homes#about", as: "about"
     resources :items, only: [:index, :show]
+
+    get "/customers/my_page" => "public/customers#show", as: "my_page"
+    resources :customers, only: [:edit, :update]
+    get "/customers/quit" => "public/customers#quit" #退会確認画面
+    patch '/customers/leave' => "public/customers#leave" #退会処理
   end
 
-  # #/items
-  
-  # #/customers
-  # get "/customers/my_page" => "public/customers#show", as: "my_page"
-  # resources :customers, only: [:edit, :update]  
-  # get "/customers/quit" => "public/customers#quit" #退会確認画面
-  # patch '/customers/leave' => "public/customers#leave" #退会処理
   # #/cart_items
   # resources :cart_items, only: [:index, :create, :update, :destroy]
   # delete "/cart_items/destroy_all" => "public/cart_items#destroy_all" #カート内商品のデータ削除（全て）
