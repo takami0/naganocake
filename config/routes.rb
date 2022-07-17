@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  # root "homes#top"
+  
 
-  # devise_for :customers, skip: [:passwords], controllers: {
-  #   registrations: "public/registrations",
-  #   sessions: "public/sessions"
-  # }
-  # #/homes
+  devise_for :customers, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
+  namespace :public do
+    get "/" => "homes#top"
+    get "/about" => "homes#about", as: "about"
+    resources :items, only: [:index, :show]
+  end
 
-  # get "homes/about" => "homes#about", as: "about"
   # #/items
-  # resources :items, only: [:index, :show]
+  
   # #/customers
   # get "/customers/my_page" => "public/customers#show", as: "my_page"
-  # resources :customers, only: [:edit, :update]
+  # resources :customers, only: [:edit, :update]  
   # get "/customers/quit" => "public/customers#quit" #退会確認画面
   # patch '/customers/leave' => "public/customers#leave" #退会処理
   # #/cart_items

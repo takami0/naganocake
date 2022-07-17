@@ -1,2 +1,32 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<p>
+  ようこそ、ながのCAKEへ！<br>
+  このサイトは、ケーキ販売のECサイトになります。<br>
+  会員でない方も商品の閲覧はできますが、<br>
+  購入には会員登録が必要になります。
+</p>
+
+<h2>新着商品</h2>
+<table>
+  <tdoby>
+    <tr>
+      <th><%= image_tag Item.find(1).get_image(50, 50)%></th>
+      <th><%= image_tag Item.find(2).get_image(50, 50)%></th>
+      <th><%= image_tag Item.find(3).get_image(50, 50)%></th>
+      <th><%= image_tag Item.find(4).get_image(50, 50)%></th>
+    </tr>
+    <tr>
+      <td><%= Item.find(1).name %></td>
+      <td><%= Item.find(2).name %></td>
+      <td><%= Item.find(3).name %></td>
+      <td><%= Item.find(4).name %></td>
+    </tr>
+    <tr>
+      <td>¥<%= Item.find(1).price %></td>
+      <td>¥<%= Item.find(2).price %></td>
+      <td>¥<%= Item.find(3).price %></td>
+      <td>¥<%= Item.find(4).price %></td>
+    </tr>
+  </tdoby>
+</table>
+
+<%= link_to "全ての商品を見る", public_items_path %>
