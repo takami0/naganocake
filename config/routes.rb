@@ -5,15 +5,16 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  
   namespace :public do
     get "/" => "homes#top" , as: "top"
     get "/about" => "homes#about", as: "about"
     resources :items, only: [:index, :show]
 
-    get "/customers/my_page" => "public/customers#show", as: "my_page"
+    get "/customers/my_page" => "customers#show", as: "my_page"
     resources :customers, only: [:edit, :update]
-    get "/customers/quit" => "public/customers#quit" #退会確認画面
-    patch '/customers/leave' => "public/customers#leave" #退会処理
+    get "/customers/quit" => "customers#quit" #退会確認画面
+    patch '/customers/leave' => "customers#leave" #退会処理
   end
 
   # #/cart_items
