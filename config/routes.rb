@@ -15,17 +15,18 @@ Rails.application.routes.draw do
     resources :customers, only: [:edit, :update]
     get "/customers/quit" => "customers#quit" #退会確認画面
     patch '/customers/leave' => "customers#leave" #退会処理
+    
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:new, :index, :show, :create]
+    post "/orders/confirm" => "public/orders#confirm", as: "confirm" #注文情報確認画面
+    get "/orders/complete" => "public/orders#conplete", as: "complete" #注文完了画面
   end
 
   # #/cart_items
   # resources :cart_items, only: [:index, :create, :update, :destroy]
   # delete "/cart_items/destroy_all" => "public/cart_items#destroy_all" #カート内商品のデータ削除（全て）
-  # #/orders
-  # resources :orders, only: [:new, :index, :show, :create]
-  # post "/orders/confirm" => "public/orders#confirm", as: "confirm" #注文情報確認画面
-  # get "/orders/complete" => "public/orders#conplete", as: "complete" #注文完了画面
-  # #/addresses
-  # resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  
+  
 
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
