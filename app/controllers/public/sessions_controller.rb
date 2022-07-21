@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_sign_in_params, if: :devise_controller?
+  before_action :customer_state, only: [:create]
 
   # def create
   #   @customer =
@@ -36,8 +37,20 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def configure_permitted_parameters
+  def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
-
+  
+  
+  protected
+  def customer_state
+  @customer = Customer.find_by(email: params[:customer][:email])
+  return if !@customer
+  end
+  if @customer.valid_password?(params[:customer][:password])  &&  !@customer.is_active
+    redirect_to  new_customer_registration_path
+  else
+    redirect_to :create
+  end
+  
 end
