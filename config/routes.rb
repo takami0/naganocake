@@ -20,13 +20,10 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :index, :show, :create]
     post "/orders/confirm" => "public/orders#confirm", as: "confirm" #注文情報確認画面
     get "/orders/complete" => "public/orders#conplete", as: "complete" #注文完了画面
+    
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete "/cart_items/destroy_all" => "public/cart_items#destroy_all" #カート内商品のデータ削除（全て）
   end
-
-  # #/cart_items
-  # resources :cart_items, only: [:index, :create, :update, :destroy]
-  # delete "/cart_items/destroy_all" => "public/cart_items#destroy_all" #カート内商品のデータ削除（全て）
-  
-  
 
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
