@@ -1,13 +1,15 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_items = CartItem.all
+    @sum = 0
   end
 
   def create
-    @item = CartItem.new(cart_item_params)
-    if @item.save
+    @cart_item = CartItem.new(cart_item_params)
+    if @cart_item.save
       redirect_to public_cart_items_path
     else
-      redirect_to public_item_path(@item.id)
+      redirect_to public_items_path
     end
   end
 
